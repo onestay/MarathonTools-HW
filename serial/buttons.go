@@ -3,6 +3,7 @@ package serial
 import (
 	"bufio"
 	"encoding/json"
+	"fmt"
 	"os"
 
 	"github.com/tarm/serial"
@@ -36,10 +37,10 @@ func OpenButtonSerial(configPath string, bc chan<- ButtonCommand) error {
 			return err
 		}
 
-		// err := verifyDevice(ports[i], config.DeviceName)
-		// if err != nil {
-		// 	return err
-		// }
+		err := verifyDevice(ports[i], config.DeviceName)
+		if err != nil {
+			return err
+		}
 	}
 
 	readButtonInputs(ports, bc, butConf)
@@ -71,6 +72,7 @@ func readButtonInputs(ports []*serial.Port, bc chan<- ButtonCommand, buttonConfi
 }
 
 func parseConfig(cp string) (*[]ButtonConfig, error) {
+	fmt.Println(cp)
 	f, err := os.Open(cp)
 	if err != nil {
 		return nil, err

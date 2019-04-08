@@ -10,6 +10,7 @@ import (
 
 // we are verifiying if we are connected to the right device by sending a ping
 func verifyDevice(s *serial.Port, deviceName string) error {
+	fmt.Println("verifiyng device ", deviceName)
 	_, err := s.Write([]byte("PING\n"))
 	if err != nil {
 		return err
@@ -20,9 +21,9 @@ func verifyDevice(s *serial.Port, deviceName string) error {
 	if err != nil {
 		return err
 	}
-
 	d, _ := parseResponse(string(l))
 	if d == deviceName {
+		fmt.Println("verified")
 		return nil
 	}
 

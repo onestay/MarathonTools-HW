@@ -10,6 +10,7 @@ import (
 type wsTimeUpdate struct {
 	DataType string  `json:"dataType"`
 	T        float64 `json:"t"`
+	State    int     `json:"state"`
 }
 
 // OpenWSConnection opens a connection to the MarathonTools-API websocket
@@ -33,6 +34,8 @@ func readWSMessages(tu chan<- float64, c *websocket.Conn) {
 		c.ReadJSON(&res)
 		if res.DataType == "timeUpdate" {
 			tu <- res.T
+		} else if res.DataType == "stateUpdate" {
+			state = res.State
 		}
 	}
 

@@ -3,12 +3,12 @@
         "deviceName": "BUTTONG",
         "color": "green",
         "player": 1,
-        "device": "COM5" 
+        "device": "COM8" 
     },
     {
         "deviceName": "BUTTONB",
         "color": "blue",
         "player": 2,
-        "device": "COM7"
+        "device": "COM10"
     }
 ]

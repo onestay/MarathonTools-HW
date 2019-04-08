@@ -17,10 +17,10 @@ func OpenDisplaySerial(dev string, timeUpdate <-chan float64) error {
 
 	rTimeUpdate := make(chan float64)
 
-	// err = verifyDevice(s, "DISPLAY1")
-	// if err != nil {
-	// 	return err
-	// }
+	err = verifyDevice(s, "DISPLAY1")
+	if err != nil {
+		return err
+	}
 	go reduceTimerFrequency(rTimeUpdate, timeUpdate)
 
 	sendTime(rTimeUpdate, s)
